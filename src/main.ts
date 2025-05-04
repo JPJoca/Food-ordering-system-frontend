@@ -1,3 +1,6 @@
+(window as any).global = window;
+(globalThis as any).global = globalThis;
+
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';

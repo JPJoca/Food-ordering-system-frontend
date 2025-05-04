@@ -1,0 +1,25 @@
+.schedule-order-container {
+  border: 1px solid #1aa9ff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: auto;
+  background-color: #dddddd;
+}
+
+.datetime-picker, .selected-items {
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+}
+
+.selected-items ul {
+  list-style: none;
+  padding: 0;
+}
+
+.selected-items li {
+  background: #53b0ea;
+  margin: 5px 0;
+  padding: 8px;
+  border-radius: 4px;
+}

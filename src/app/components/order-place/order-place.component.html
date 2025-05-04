@@ -1,0 +1,50 @@
+<div class="container">
+  <h2 class="text-center mb-4">Place Order</h2>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <app-schedule-order
+    *ngIf="hasPermission('can_schedule_order')"
+    [selectedDishes]="selectedDishes"
+    [allDishes]="dishes"
+    (dateTimeSelected)="onDateTimeSelected($event)"
+    (selectedDateAndTime)="onDateTime($event)"
+  >
+
+  </app-schedule-order>
+  <!-- Prikaz svih dostupnih jela -->
+  <!-- Dugme za potvrdu narudžbine -->
+  <button
+    class="btn btn-primary mt-3"
+    [disabled]="selectedDishes.length === 0"
+    (click)="placeOrder()"
+  >
+    Place Order
+  </button>
+  <button
+    class="btn btn-primary mt-3"
+    [disabled]="selectedDishes.length === 0 || !isDateTimeSelected"
+    *ngIf="hasPermission('can_schedule_order')"
+    (click)="scheduleOrder()"
+  >
+    Schedule Order
+  </button>
+  <div class="dish-grid">
+    <div
+      *ngFor="let dish of dishes"
+      class="dish-card"
+      [class.selected]="selectedDishes.includes(dish.id)"
+      (click)="toggleDishSelection(dish.id)"
+    >
+      <h5>{{ dish.name }}</h5>
+      <p>{{ dish.description }}</p>
+      <small>Category: {{ dish.category }}</small>
+    </div>
+  </div>
+
+
+
+
+
+</div>

@@ -1,0 +1,67 @@
+<div  class="container mt-4">
+  <h3>List of orders</h3>
+  <div *ngIf="hasPermission('can_place_order')" class="d-flex justify-content-center mb-3" >
+    <button class="btn btn-primary" [routerLink]="'/orders-place'" >Place Order</button>
+  </div>
+  <div *ngIf="hasPermission('can_search_order') else noAcces" class="container mt-4">
+  <!-- Filter Sekcija -->
+    <div class="filter-container">
+      <form [formGroup]="filterForm" (ngSubmit)="applyFilter()" class="d-flex w-100 align-items-center gap-3">
+
+        <!-- Multi-select Checkboxes -->
+        <div class="checkbox-group">
+          <div *ngFor="let status of statuses" class="d-flex align-items-center">
+            <input type="checkbox" [value]="status" (change)="onCheckboxChange($event)">
+            <label class="ms-1">{{ status }}</label>
+          </div>
+        </div>
+
+        <!-- Dugme Submit poravnato desno -->
+        <button type="submit" class="btn btn-primary submit-button">Submit</button>
+      </form>
+    </div>
+
+    <!-- Tabela Narudžbina -->
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Status</th>
+        <th>Customer</th>
+        <th>Active</th>
+        <th>Items</th>
+        <th>Actions</th> <!-- Dodata nova kolona za Cancel dugme -->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let order of filteredOrders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.status }}</td>
+        <td>{{ order.createdBy.name }} {{ order.createdBy.surname }}</td>
+        <td>{{ order.active ? 'Yes' : 'No' }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let item of order.items">{{ item.name }}</li>
+          </ul>
+        </td>
+        <td>
+          <button
+            class="btn btn-danger"
+            [disabled]="order.status !== 'ORDERED'"
+            (click)="cancelOrder(order.id)"
+          >
+            Cancel
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #noAcces>
+  <div class="text-center mt-4">
+    <h3>Nemate pristup 403</h3>
+    <h4>Ne mozete pogledati listu porudzbina</h4>
+  </div>
+</ng-template>

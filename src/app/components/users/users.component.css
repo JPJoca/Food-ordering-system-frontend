@@ -1,0 +1,29 @@
+
+.table thead.head {
+  background-color: #0A679E !important;
+  color: #fff !important;
+}
+
+
+.table tbody tr:hover {
+  background-color: #d1d1d1 !important;
+}
+
+
+.table tbody tr.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+
+.table tbody tr.bg-secondary {
+  background-color: #6c757d !important;
+  color: #fff !important;
+}
+.spacing{
+  padding-bottom: 10px !important;
+}
+.disabled-link {
+  pointer-events: none;
+  color: gray;
+  cursor: not-allowed;
+}

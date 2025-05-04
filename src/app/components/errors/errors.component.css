@@ -1,0 +1,42 @@
+.error-wrapper {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 5px;
+border-bottom: #2b54ff;
+  border-radius: 10px;
+  overflow: hidden;;
+}
+
+.no-border td,
+.no-border th {
+  border: none !important;
+}
+
+td {
+  padding: 10px 0;
+  font-size: 17px;
+  color: #001522;
+  text-align: center;
+
+}
+
+
+::ng-deep .custom-paginator .mat-paginator-range-label,
+::ng-deep .custom-paginator .mat-paginator-icon,
+::ng-deep .custom-paginator .mat-select-value {
+  color: #00548e; /* Bootstrap blue */
+}

@@ -1,0 +1,51 @@
+<div *ngIf="hasPermission('can_read_users') else noAcces" class="container mt-4">
+  <h3 class="text-center mb-4">All Users</h3>
+
+  <div *ngIf="hasPermission('can_create_users')" class="d-flex justify-content-center mb-3" >
+    <button class="btn btn-primary" [routerLink]="'/add'" >Add User</button>
+  </div>
+
+  <table class="table table-bordered">
+    <thead class="head table-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Surname</th>
+      <th scope="col">Email</th>
+      <th scope="col">Permissions</th>
+      <th scope="col" *ngIf="hasPermission('can_delete_users')">Remove</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+      *ngFor="let user of users; let i = index"
+      [ngClass]="{'bg-light': i % 2 === 0, 'bg-secondary text-white': i % 2 !== 0}">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name || 'N/A' }}</td>
+      <td>{{ user.surname || 'N/A' }}</td>
+      <td
+        [routerLink]="hasPermission('can_update_users') ? ['/edit', user.id] : null"
+        [ngClass]="{ 'disabled-link': !hasPermission('can_update_users') }"
+      >
+        {{ user.email }}
+      </td>
+
+      <td>
+        <ul>
+          <li *ngFor="let permission of user.permissions">{{ permission }}</li>
+        </ul>
+      </td>
+      <td *ngIf="hasPermission('can_delete_users')">
+        <button class="btn btn-danger" (click)="onDelete(user.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #noAcces>
+  <div class="text-center mt-4">
+    <h3>Nemate pristup 403</h3>
+  </div>
+</ng-template>

@@ -1,0 +1,22 @@
+<div class="schedule-order-container">
+  <h2>Schedule Order</h2>
+
+  <div class="datetime-picker">
+    <label for="datetime">Select Date and Time:</label>
+    <input type="datetime-local" id="datetime" (change)="onDateTimeChange($event)" />
+  </div>
+
+  <div class="selected-items">
+    <h3>Selected Dishes:</h3>
+    <ul>
+      <li *ngFor="let dishName of getSelectedDishNames()">{{ dishName }}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="selectedDateTime">
+    <h4>Selected scheduled time:</h4>
+    <p>{{ selectedDateTime | date: 'full' }}</p>
+  </div>
+
+
+</div>

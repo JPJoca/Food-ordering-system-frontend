@@ -1,0 +1,31 @@
+<header *ngIf="localStorage.getItem('token') != null">
+  <nav class="navbar navbar-expand-lg bg-light custom-navbar">
+    <div class="container-fluid">
+      <div class="login-image me-3">
+        <img src="assets/logo.png" alt="Login Image" />
+      </div>
+      <a [routerLink]="'/'" class="navbar-brand">RAF Food</a>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a [routerLink]="'/'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link"
+             aria-currentWhenActive="page">
+            User List
+          </a>
+          <a [routerLink]="'/orders'" routerLinkActive="active" class="nav-link" aria-currentWhenActive="page">
+            Order List
+          </a>
+          <a [routerLink]="'/errors'" routerLinkActive="active" class="nav-link" aria-currentWhenActive="page">
+            Error List
+          </a>
+        </div>
+      </div>
+      <div class="d-flex align-items-center">
+        <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container pt-3">
+  <router-outlet></router-outlet>
+</div>
